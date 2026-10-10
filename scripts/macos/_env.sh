@@ -57,6 +57,11 @@ load_env() {
 run_designer() {
   local step="$1"; shift
   local log="$LOGDIR/$step.log" res="$LOGDIR/$step.result"
+  if [ ! -f "$IB/1Cv8.1CD" ]; then
+    echo "[LỖI] Chưa có infobase tại: $IB"
+    echo "      Làm bước tạo infobase trước: restore-dt.sh (có file .dt) hoặc new-ib.sh (cấu hình trống)."
+    return 1
+  fi
   rm -f "$log" "$res"
   echo
   echo "=== [$step] đang chạy Designer ..."

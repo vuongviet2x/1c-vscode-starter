@@ -20,11 +20,18 @@ set ARGS=%ARGS% %1
 goto :collect
 
 :run
+if exist "%IB%\1Cv8.1CD" goto :run_ok
+echo.
+echo [LOI] Chua co infobase tai: %IB%
+echo       Lam buoc tao infobase truoc: restore-dt.cmd (co file .dt) hoac new-ib.cmd (cau hinh trong).
+exit /b 1
+
+:run_ok
 echo.
 echo === [%STEP%] dang chay Designer ...
 start "" /wait "%V8_PATH%" DESIGNER /F "%IB%" %AUTH% %COMMON% /Out "%STEP_LOG%" /DumpResult "%STEP_RES%" %ARGS%
 
-if exist "%STEP_LOG%" type "%STEP_LOG%"
+if exist "%STEP_LOG%" powershell -NoProfile -Command "Get-Content -Encoding UTF8 -LiteralPath $env:STEP_LOG"
 if not exist "%STEP_RES%" goto :fail
 findstr /c:"1" "%STEP_RES%" >nul && goto :fail
 echo === [%STEP%] OK
