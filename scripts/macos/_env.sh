@@ -37,6 +37,7 @@ load_env() {
     return 1
   fi
   V8C_PATH="$(dirname "$V8_PATH")/1cv8c"
+  case "$(basename "$V8_PATH")" in 1cv8t) V8C_PATH="$(dirname "$V8_PATH")/1cv8ct" ;; esac
   if [ ! -x "$V8C_PATH" ]; then
     # macOS: 1cv8c.app nằm cạnh 1cv8.app
     V8C_PATH="$(cd "$(dirname "$V8_PATH")/../../.." 2>/dev/null && pwd)/1cv8c.app/Contents/MacOS/1cv8c"

@@ -7,6 +7,7 @@ Bước đầu tiên luôn là chạy **doctor** và đọc file log của bư�
 | Triệu chứng | Nguyên nhân thường gặp | Cách xử lý |
 |---|---|---|
 | `Khong tim thay 1cv8.exe` / `Không tìm thấy 1cv8` | `V8_VERSION` trong `1c.env` khác bản đã cài | Sửa `V8_VERSION`, hoặc điền đường dẫn đầy đủ vào `V8_PATH`. macOS: `ls -d /Applications/1cv8*/*/1cv8.app` để xem bản đã cài |
+| Máy cài **bản training** (thư mục `1cv8t`, file `1cv8t.exe`) | Script tự tìm trong `Program Files\1cv8t` và `Program Files (x86)\1cv8t`. Nếu không thấy, điền `V8_PATH=...\bin\1cv8t.exe` (không phải `1cv8ct.exe` hay `1cv8st.exe`). Bản training có giới hạn về dung lượng dữ liệu; nếu nạp `.dt` lớn báo lỗi, cài bản platform thường |
 | macOS: `permission denied` khi chạy `.sh` | File chưa có quyền chạy | `chmod +x scripts/macos/*.sh` |
 | macOS: hệ thống chặn mở 1cv8 | Gatekeeper | Mở 1C một lần bằng tay từ Finder, chọn *Open* |
 | Lệnh chạy rất lâu rồi báo lỗi khóa / *Designer is already running* | Designer đang mở cùng infobase | Đóng Designer rồi chạy lại |

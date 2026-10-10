@@ -30,6 +30,11 @@ if not "%V8_PATH%"=="" goto :check_v8
 if exist "%ProgramFiles%\1cv8\%V8_VERSION%\bin\1cv8.exe" set "V8_PATH=%ProgramFiles%\1cv8\%V8_VERSION%\bin\1cv8.exe"
 if not "%V8_PATH%"=="" goto :check_v8
 if exist "%PF86%\1cv8\%V8_VERSION%\bin\1cv8.exe" set "V8_PATH=%PF86%\1cv8\%V8_VERSION%\bin\1cv8.exe"
+if not "%V8_PATH%"=="" goto :check_v8
+rem Ban training (hoc tap) cua platform: thu muc 1cv8t, file 1cv8t.exe
+if exist "%ProgramFiles%\1cv8t\%V8_VERSION%\bin\1cv8t.exe" set "V8_PATH=%ProgramFiles%\1cv8t\%V8_VERSION%\bin\1cv8t.exe"
+if not "%V8_PATH%"=="" goto :check_v8
+if exist "%PF86%\1cv8t\%V8_VERSION%\bin\1cv8t.exe" set "V8_PATH=%PF86%\1cv8t\%V8_VERSION%\bin\1cv8t.exe"
 
 :check_v8
 if exist "%V8_PATH%" goto :v8_ok
@@ -39,19 +44,25 @@ echo       Cac ban platform tim thay trong Program Files:
 set "FOUND="
 for /d %%D in ("%ProgramFiles%\1cv8\8.*") do call :show_v8 "%%~fD"
 for /d %%D in ("%PF86%\1cv8\8.*") do call :show_v8 "%%~fD"
+for /d %%D in ("%ProgramFiles%\1cv8t\8.*") do call :show_v8 "%%~fD"
+for /d %%D in ("%PF86%\1cv8t\8.*") do call :show_v8 "%%~fD"
 if not defined FOUND echo         - khong co ban nao. Platform co the cai o noi khac: dien duong dan day du vao V8_PATH.
 echo       Sua V8_VERSION trong 1c.env cho dung mot ban o tren, hoac dien V8_PATH.
 exit /b 1
 
 :show_v8
-if not exist "%~1\bin\1cv8.exe" exit /b 0
-echo         %~nx1   -^>  %~1\bin\1cv8.exe
-set "FOUND=1"
+if exist "%~1\bin\1cv8.exe" echo         %~nx1   -^>  %~1\bin\1cv8.exe
+if exist "%~1\bin\1cv8.exe" set "FOUND=1"
+if exist "%~1\bin\1cv8t.exe" echo         %~nx1 (training)   -^>  %~1\bin\1cv8t.exe
+if exist "%~1\bin\1cv8t.exe" set "FOUND=1"
 exit /b 0
 
 :v8_ok
 for %%I in ("%V8_PATH%") do set "V8_BIN=%%~dpI"
+for %%I in ("%V8_PATH%") do set "V8_EXE=%%~nI"
 set "V8C_PATH=%V8_BIN%1cv8c.exe"
+rem Ban training: Designer = 1cv8t.exe, thin client = 1cv8ct.exe
+if /i "%V8_EXE%"=="1cv8t" set "V8C_PATH=%V8_BIN%1cv8ct.exe"
 
 rem --- Duong dan infobase --------------------------------------------
 set "IB=%ROOT%\%IB_PATH%"
