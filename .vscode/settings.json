@@ -13,9 +13,13 @@
   },
   "search.exclude": {
     "ib/": true,
-    "logs/": true
+    "logs/": true,
+    "dt/": true,
+    ".claude/skills/": true,
+    "**/.git": true
   },
   "files.watcherExclude": {
     "**/ib/**": true
-  }
+  },
+  "search.useIgnoreFiles": false
 }
