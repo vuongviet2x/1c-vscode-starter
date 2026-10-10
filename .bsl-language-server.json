@@ -1,0 +1,11 @@
+{
+  "$schema": "https://1c-syntax.github.io/bsl-language-server/configuration/schema.json",
+  "language": "en",
+  "configurationRoot": "src/cf",
+  "diagnostics": {
+    "computeTrigger": "onSave",
+    "parameters": {
+      "LineLength": { "maxLineLength": 140 }
+    }
+  }
+}

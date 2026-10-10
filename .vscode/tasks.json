@@ -1,0 +1,161 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "1C: Kiểm tra môi trường (doctor)",
+      "type": "shell",
+      "windows": {
+        "command": "${workspaceFolder}\\scripts\\windows\\doctor.cmd"
+      },
+      "osx": {
+        "command": "${workspaceFolder}/scripts/macos/doctor.sh"
+      },
+      "linux": {
+        "command": "${workspaceFolder}/scripts/macos/doctor.sh"
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      }
+    },
+    {
+      "label": "1C: Xuất cấu hình ra src (dump)",
+      "type": "shell",
+      "windows": {
+        "command": "${workspaceFolder}\\scripts\\windows\\dump.cmd"
+      },
+      "osx": {
+        "command": "${workspaceFolder}/scripts/macos/dump.sh"
+      },
+      "linux": {
+        "command": "${workspaceFolder}/scripts/macos/dump.sh"
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      }
+    },
+    {
+      "label": "1C: Kiểm tra cú pháp (check)",
+      "type": "shell",
+      "windows": {
+        "command": "${workspaceFolder}\\scripts\\windows\\check.cmd"
+      },
+      "osx": {
+        "command": "${workspaceFolder}/scripts/macos/check.sh"
+      },
+      "linux": {
+        "command": "${workspaceFolder}/scripts/macos/check.sh"
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "1C: Áp dụng vào database (apply)",
+      "type": "shell",
+      "windows": {
+        "command": "${workspaceFolder}\\scripts\\windows\\apply.cmd"
+      },
+      "osx": {
+        "command": "${workspaceFolder}/scripts/macos/apply.sh"
+      },
+      "linux": {
+        "command": "${workspaceFolder}/scripts/macos/apply.sh"
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      }
+    },
+    {
+      "label": "1C: Mở 1C:Enterprise (run)",
+      "type": "shell",
+      "windows": {
+        "command": "${workspaceFolder}\\scripts\\windows\\run.cmd"
+      },
+      "osx": {
+        "command": "${workspaceFolder}/scripts/macos/run.sh"
+      },
+      "linux": {
+        "command": "${workspaceFolder}/scripts/macos/run.sh"
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      }
+    },
+    {
+      "label": "1C: Mở Designer",
+      "type": "shell",
+      "windows": {
+        "command": "${workspaceFolder}\\scripts\\windows\\designer.cmd"
+      },
+      "osx": {
+        "command": "${workspaceFolder}/scripts/macos/designer.sh"
+      },
+      "linux": {
+        "command": "${workspaceFolder}/scripts/macos/designer.sh"
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      }
+    },
+    {
+      "label": "1C: Nạp file .dt (restore-dt)",
+      "type": "shell",
+      "windows": {
+        "command": "${workspaceFolder}\\scripts\\windows\\restore-dt.cmd"
+      },
+      "osx": {
+        "command": "${workspaceFolder}/scripts/macos/restore-dt.sh"
+      },
+      "linux": {
+        "command": "${workspaceFolder}/scripts/macos/restore-dt.sh"
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      }
+    },
+    {
+      "label": "1C: Tạo infobase trống (new-ib)",
+      "type": "shell",
+      "windows": {
+        "command": "${workspaceFolder}\\scripts\\windows\\new-ib.cmd"
+      },
+      "osx": {
+        "command": "${workspaceFolder}/scripts/macos/new-ib.sh"
+      },
+      "linux": {
+        "command": "${workspaceFolder}/scripts/macos/new-ib.sh"
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      }
+    }
+  ]
+}

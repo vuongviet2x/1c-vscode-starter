@@ -1,0 +1,25 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "1C: Debug (Windows)",
+      "type": "1c-platform-tools",
+      "request": "launch",
+      "platformPath": "${env:PROGRAMFILES}/1cv8",
+      "platformVersion": "8.3.25.1445",
+      "rootProject": "${workspaceFolder}/src/cf",
+      "debugServerHost": "localhost",
+      "autoAttachTypes": ["ManagedClient", "Server"]
+    },
+    {
+      "name": "1C: Debug (macOS)",
+      "type": "1c-platform-tools",
+      "request": "launch",
+      "platformPath": "/Applications/1cv8.localized",
+      "platformVersion": "8.3.25.1445",
+      "rootProject": "${workspaceFolder}/src/cf",
+      "debugServerHost": "localhost",
+      "autoAttachTypes": ["ManagedClient", "Server"]
+    }
+  ]
+}

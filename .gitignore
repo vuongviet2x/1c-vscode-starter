@@ -1,0 +1,25 @@
+# Cấu hình cá nhân
+1c.env
+env.json
+
+# Infobase dạng file và file sao lưu
+ib/
+*.1CD
+*.dt
+!dt/.gitkeep
+*.cf
+*.cfe
+*.epf.bak
+
+# Log của script
+logs/*
+!logs/.gitkeep
+
+# Skill mentor: nhận từ giảng viên, không đưa lên Git
+.claude/skills/*
+!.claude/skills/README.md
+.claude/settings.local.json
+
+# Rác hệ điều hành / editor
+.DS_Store
+Thumbs.db

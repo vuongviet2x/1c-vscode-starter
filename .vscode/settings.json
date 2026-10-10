@@ -1,0 +1,21 @@
+{
+  "files.associations": {
+    "*.bsl": "bsl",
+    "*.os": "bsl"
+  },
+  "[bsl]": {
+    "files.encoding": "utf8bom",
+    "editor.tabSize": 4,
+    "editor.insertSpaces": false
+  },
+  "files.exclude": {
+    "ib/": true
+  },
+  "search.exclude": {
+    "ib/": true,
+    "logs/": true
+  },
+  "files.watcherExclude": {
+    "**/ib/**": true
+  }
+}

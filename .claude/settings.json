@@ -1,0 +1,33 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(./scripts/macos/doctor.sh)",
+      "Bash(./scripts/macos/check.sh)",
+      "Bash(./scripts/macos/dump.sh)",
+      "Bash(scripts/windows/doctor.cmd)",
+      "Bash(scripts/windows/check.cmd)",
+      "Bash(scripts/windows/dump.cmd)",
+      "PowerShell(scripts\\windows\\doctor.cmd)",
+      "PowerShell(scripts\\windows\\check.cmd)",
+      "PowerShell(scripts\\windows\\dump.cmd)",
+      "Read(./logs/**)",
+      "Read(./src/**)"
+    ],
+    "ask": [
+      "Bash(./scripts/macos/apply.sh)",
+      "Bash(scripts/windows/apply.cmd)",
+      "PowerShell(scripts\\windows\\apply.cmd)",
+      "Bash(./scripts/macos/restore-dt.sh *)",
+      "Bash(scripts/windows/restore-dt.cmd *)",
+      "Edit(/src/cf/**/*.xml)",
+      "Edit(/1c.env)",
+      "Bash(git push *)",
+      "Bash(git commit *)"
+    ],
+    "deny": [
+      "Read(./1c.env)",
+      "Edit(/ib/**)",
+      "Read(./ib/**)"
+    ]
+  }
+}
