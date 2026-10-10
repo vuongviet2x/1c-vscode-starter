@@ -20,6 +20,8 @@ set "IB_PATH="
 set "IB_USER="
 set "IB_PWD="
 set "UI_LANG="
+set "ALLOW_PLATFORM_MISMATCH="
+set "PLATFORM_MISMATCH="
 for /f "usebackq eol=# tokens=1,* delims==" %%A in ("%ROOT%\1c.env") do set "%%A=%%B"
 if "%UI_LANG%"=="" set "UI_LANG=en"
 if "%IB_PATH%"=="" set "IB_PATH=ib"
@@ -63,6 +65,18 @@ for %%I in ("%V8_PATH%") do set "V8_EXE=%%~nI"
 set "V8C_PATH=%V8_BIN%1cv8c.exe"
 rem Ban training: Designer = 1cv8t.exe, thin client = 1cv8ct.exe
 if /i "%V8_EXE%"=="1cv8t" set "V8C_PATH=%V8_BIN%1cv8ct.exe"
+
+rem --- So phien ban platform voi phien ban chung cua nhom (.1c-platform) ---
+for %%I in ("%V8_BIN%..") do set "V8_VDIR=%%~fI"
+for %%I in ("%V8_VDIR%") do set "V8_DETECTED=%%~nxI"
+set "TEAM_V8="
+if exist "%ROOT%\.1c-platform" set /p TEAM_V8=<"%ROOT%\.1c-platform"
+if "%TEAM_V8%"=="" goto :team_ok
+echo %V8_DETECTED%.| findstr /b /l /c:"%TEAM_V8%." >nul && goto :team_ok
+set "PLATFORM_MISMATCH=1"
+echo [CANH BAO] Platform cua ban la %V8_DETECTED%, nhom thong nhat dung %TEAM_V8%.x (file .1c-platform).
+echo            dump bang ban khac co the lam ca nhom khong nap duoc src\cf. Xem docs\06-lam-viec-nhom.md
+:team_ok
 
 rem --- Duong dan infobase --------------------------------------------
 set "IB=%ROOT%\%IB_PATH%"

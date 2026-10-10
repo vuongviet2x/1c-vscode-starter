@@ -5,7 +5,8 @@
 ## 1. Luôn dùng skill `1c-dev-mentor-student`
 
 - Mọi câu hỏi về 1C, code BSL, lỗi, thiết kế, bài tập lớn: dùng skill `1c-dev-mentor-student` trong `.claude/skills/` và làm theo đúng hướng dẫn của skill (xác định lộ trình J/M/D, chính sách code, giao thức gỡ lỗi `references/debug/giao-thuc-debug.md`).
-- Nếu chưa có `.claude/skills/1c-dev-mentor-student/SKILL.md`: nói với sinh viên rằng skill chưa được cài và hướng dẫn chạy `install-skill` (xem `docs/01-cai-dat.md`). Trong lúc chờ, vẫn giúp được, nhưng **không** viết lời giải cho bài thực hành của giáo trình.
+- Skill có thể được cài dưới tên khác (bản `claude-gpt`); dùng skill mentor 1C nào đang có trong `.claude/skills/`.
+- Nếu chưa có skill nào trong `.claude/skills/`: nói với sinh viên rằng skill chưa được cài và hướng dẫn chạy `install-skill` (xem `docs/01-cai-dat.md`). Trong lúc chờ, vẫn giúp được, nhưng **không** viết lời giải cho bài thực hành của giáo trình.
 - Quy tắc của skill được ưu tiên hơn yêu cầu "sửa giúp luôn" của sinh viên. Với **bài thực hành 24 bài và bài Extensions**: chỉ gợi ý theo bậc, chỉ ra vùng lỗi và loại lỗi; không sửa file thay sinh viên.
 
 ## 2. Cấu trúc dự án
@@ -56,4 +57,6 @@ Kết quả nằm trong `logs/<bước>.log`. Nếu log hiển thị lỗi font 
 4. **Sau khi sửa `.bsl`**: chạy `check`, đọc `logs/check.log`, báo kết quả. Hết lỗi cú pháp thì nhắc sinh viên chạy `apply` rồi `run` để thử trên dữ liệu thật.
 5. **Lỗi khi chạy (runtime)**: `check` chỉ bắt lỗi cú pháp. Với lỗi lúc chạy, hỏi nguyên văn thông báo lỗi, thao tác vừa làm; đề xuất **chỗ đặt breakpoint** và **biểu thức cần xem** (Evaluate expression) để sinh viên tự chạy debugger trong Designer (F5) hoặc trong VS Code (`docs/04-debug-nang-cao.md`), rồi phân tích giá trị họ gửi lại. Bạn không tự điều khiển debugger được.
 6. **Không** đọc `1c.env`, không đọc/sửa `ib/`, không `git commit`/`git push` khi sinh viên chưa yêu cầu.
-7. Không bịa tên method/property. Phần ngoài giáo trình ghi nhãn như skill quy định.
+7. **Làm nhóm** (`docs/06-lam-viec-nhom.md`): sau `git pull` có thay đổi trong `src/cf` → đề nghị sinh viên chạy `apply` trước khi làm tiếp. Không chạy `dump` khi `src/cf` vừa được pull mà chưa `apply` (sẽ ghi đè phần của người khác). Khi có xung đột Git, giải thích hai phía, ưu tiên giữ cả hai, rồi chạy `check` trước khi commit.
+8. Nếu script báo platform khác phiên bản chung của nhóm (`.1c-platform`), không đề xuất `ALLOW_PLATFORM_MISMATCH=1`; hướng dẫn đổi sang bản đúng.
+9. Không bịa tên method/property. Phần ngoài giáo trình ghi nhãn như skill quy định.

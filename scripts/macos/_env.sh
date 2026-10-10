@@ -10,7 +10,7 @@ load_env() {
     echo "[LỖI] Chưa có file 1c.env. Chạy scripts/macos/doctor.sh (tự tạo) hoặc: cp 1c.env.example 1c.env"
     return 1
   fi
-  V8_VERSION=""; V8_PATH=""; IB_PATH=""; IB_USER=""; IB_PWD=""; UI_LANG=""
+  V8_VERSION=""; V8_PATH=""; IB_PATH=""; IB_USER=""; IB_PWD=""; UI_LANG=""; ALLOW_PLATFORM_MISMATCH=""
   while IFS='=' read -r key val || [ -n "$key" ]; do
     key="$(printf '%s' "$key" | tr -d '[:space:]')"
     case "$key" in ''|\#*) continue ;; esac
@@ -41,6 +41,18 @@ load_env() {
   if [ ! -x "$V8C_PATH" ]; then
     # macOS: 1cv8c.app nằm cạnh 1cv8.app
     V8C_PATH="$(cd "$(dirname "$V8_PATH")/../../.." 2>/dev/null && pwd)/1cv8c.app/Contents/MacOS/1cv8c"
+  fi
+
+  # --- So phiên bản platform với phiên bản chung của nhóm (.1c-platform) ---
+  V8_DETECTED="$(printf '%s' "$V8_PATH" | grep -oE '[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+' | head -n 1)"
+  TEAM_V8=""; PLATFORM_MISMATCH=""
+  [ -f "$ROOT/.1c-platform" ] && TEAM_V8="$(head -n 1 "$ROOT/.1c-platform" | tr -d '[:space:]')"
+  if [ -n "$TEAM_V8" ]; then
+    case "$V8_DETECTED." in "$TEAM_V8".*) ;; *)
+      PLATFORM_MISMATCH=1
+      echo "[CẢNH BÁO] Platform của bạn là ${V8_DETECTED:-?}, nhóm thống nhất dùng $TEAM_V8.x (file .1c-platform)."
+      echo "           dump bằng bản khác có thể làm cả nhóm không nạp được src/cf. Xem docs/06-lam-viec-nhom.md" ;;
+    esac
   fi
 
   # --- Đường dẫn infobase ---

@@ -96,10 +96,10 @@ git commit -m "Cau hinh ban dau"
 
 ## Bước 7. Cài skill gia sư
 
-Giảng viên gửi file `1c-dev-mentor-student.zip` (không giải nén). Trong terminal:
+Giảng viên gửi hai file skill. Trong VS Code chỉ dùng **`1c-dev-mentor-student-claude-gpt.zip`** (không giải nén). File `1C-Mentor-Skill-Gemini.zip` là bản cho Gemini, không cài vào đây. Trong terminal:
 
-- Windows: `scripts\windows\install-skill.cmd "%USERPROFILE%\Downloads\1c-dev-mentor-student.zip"`
-- macOS: `./scripts/macos/install-skill.sh ~/Downloads/1c-dev-mentor-student.zip`
+- Windows: `scripts\windows\install-skill.cmd "%USERPROFILE%\Downloads\1c-dev-mentor-student-claude-gpt.zip"`
+- macOS: `./scripts/macos/install-skill.sh ~/Downloads/1c-dev-mentor-student-claude-gpt.zip`
 
 Khi giảng viên phát bản skill mới, chạy lại đúng lệnh này với file mới.
 

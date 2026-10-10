@@ -11,6 +11,9 @@ ib/
 *.cfe
 *.epf.bak
 
+# File theo dõi dump của riêng từng máy — đưa lên Git sẽ xung đột liên tục khi làm nhóm
+src/cf/ConfigDumpInfo.xml
+
 # Log của script
 logs/*
 !logs/.gitkeep

@@ -27,7 +27,7 @@ Bộ khởi động cho sinh viên và Intern Dev học phát triển trên nề
    - Lộ trình Jet / có file `.dt`: chép file `.dt` vào thư mục `dt/`, chạy **restore-dt**.
    - Lớp MIS (cấu hình trống): chạy **new-ib**.
 5. Đóng Designer nếu đang mở, chạy **dump** để xuất cấu hình ra `src/cf/`.
-6. Cài skill từ file ZIP giảng viên gửi: `scripts\windows\install-skill.cmd <file.zip>` hoặc `./scripts/macos/install-skill.sh <file.zip>`.
+6. Cài skill từ file **`1c-dev-mentor-student-claude-gpt.zip`** giảng viên gửi (không dùng bản Gemini): `scripts\windows\install-skill.cmd <file.zip>` hoặc `./scripts/macos/install-skill.sh <file.zip>`.
 7. Mở panel **Claude Code** (biểu tượng Claude ở thanh bên), gõ thử: *"Kiểm tra môi trường giúp mình và cho biết cấu hình có những document nào."*
 
 ## Các lệnh
@@ -53,6 +53,7 @@ Chạy bằng **Terminal → Run Task…** (chọn mục bắt đầu bằng `1C
 - [03 — Gỡ lỗi cùng Claude](docs/03-go-loi-cung-claude.md)
 - [04 — Debug nâng cao bằng breakpoint trong VS Code](docs/04-debug-nang-cao.md)
 - [05 — Xử lý sự cố](docs/05-xu-ly-su-co.md)
+- [06 — Làm việc nhóm qua Git](docs/06-lam-viec-nhom.md) — chung phiên bản platform, chia việc, xử lý xung đột
 
 ## Cấu trúc thư mục
 
@@ -65,6 +66,7 @@ Chạy bằng **Terminal → Run Task…** (chọn mục bắt đầu bằng `1C
 ├── .vscode/                   # Extension gợi ý, cài đặt, Tasks
 ├── .bsl-language-server.json  # Cấu hình kiểm tra code BSL
 ├── 1c.env.example             # Mẫu cấu hình -> sao chép thành 1c.env
+├── .1c-platform               # Phiên bản platform chung của nhóm (mặc định 8.3.25)
 ├── scripts/windows/  scripts/macos/
 ├── src/cf/                    # Cấu hình xuất ra file — phần bạn commit lên Git
 ├── dt/                        # Chỗ để file .dt (không lên Git)

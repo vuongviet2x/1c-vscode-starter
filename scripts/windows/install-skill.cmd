@@ -1,7 +1,7 @@
 @echo off
 rem Cai skill 1c-dev-mentor-student vao .claude\skills cua du an.
 rem Cach dung:  install-skill.cmd <duong-dan-file-zip-giang-vien-gui>
-rem Vi du:      install-skill.cmd "%USERPROFILE%\Downloads\1c-dev-mentor-student.zip"
+rem Vi du:      install-skill.cmd "%USERPROFILE%\Downloads\1c-dev-mentor-student-claude-gpt.zip"
 setlocal
 if "%~1"=="" (
   echo Cach dung: install-skill.cmd ^<duong-dan-file-zip^>

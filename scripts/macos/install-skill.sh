@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 # Cài skill từ file ZIP giảng viên gửi vào <dự-án>/.claude/skills/<tên-skill>/
-# Cách dùng: install-skill.sh ~/Downloads/1c-dev-mentor-student.zip
+# Cách dùng: install-skill.sh ~/Downloads/1c-dev-mentor-student-claude-gpt.zip
 set -e
 ZIP="${1:-}"
 [ -n "$ZIP" ] && [ -f "$ZIP" ] || { echo "Cách dùng: install-skill.sh <đường-dẫn-file-zip>"; exit 1; }
+case "$(basename "$ZIP" | tr '[:upper:]' '[:lower:]')" in *gemini*) echo "[LỖI] Đây là bản skill cho Gemini. Trong VS Code hãy dùng file 1c-dev-mentor-student-claude-gpt.zip"; exit 1 ;; esac
 ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
 TMP="$(mktemp -d)"
 unzip -q "$ZIP" -d "$TMP"

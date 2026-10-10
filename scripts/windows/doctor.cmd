@@ -9,7 +9,8 @@ if not exist "%ROOT%\1c.env" (
 )
 call "%~dp0_env.cmd"
 if errorlevel 1 goto :tools
-echo [OK]   Platform: %V8_PATH%
+echo [OK]   Platform: %V8_DETECTED%  (%V8_PATH%)
+if defined TEAM_V8 if not defined PLATFORM_MISMATCH echo [OK]   Dung phien ban chung cua nhom: %TEAM_V8%.x
 if exist "%V8C_PATH%" echo [OK]   Thin client: %V8C_PATH%
 if not exist "%V8C_PATH%" echo [CANH BAO] Khong thay 1cv8c.exe - run.cmd se dung 1cv8.exe
 if exist "%IB%\1Cv8.1CD" echo [OK]   Infobase: %IB%
@@ -18,7 +19,10 @@ if exist "%SRC%\Configuration.xml" echo [OK]   Ma nguon: src\cf
 if not exist "%SRC%\Configuration.xml" echo [THIEU] src\cf trong - chay dump.cmd
 
 :tools
-if exist "%ROOT%\.claude\skills\1c-dev-mentor-student\SKILL.md" (echo [OK]   Skill 1c-dev-mentor-student da cai) else (echo [THIEU] Chua cai skill - chay install-skill.cmd ^<file-zip^>)
+set "SK="
+for /d %%D in ("%ROOT%\.claude\skills\*") do if exist "%%D\SKILL.md" set "SK=%%~nxD"
+if defined SK echo [OK]   Skill da cai: %SK%
+if not defined SK echo [THIEU] Chua cai skill - chay install-skill.cmd ^<file 1c-dev-mentor-student-claude-gpt.zip^>
 where git >nul 2>&1 && (echo [OK]   Git) || (echo [THIEU] Git - cai tu https://git-scm.com/downloads/win)
 where code >nul 2>&1 && (echo [OK]   VS Code) || (echo [CANH BAO] Khong thay lenh 'code' trong PATH)
 where claude >nul 2>&1 && (echo [OK]   Claude Code CLI) || (echo [TUY CHON] Chua co Claude Code CLI - extension VS Code van dung duoc)

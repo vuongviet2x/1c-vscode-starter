@@ -4,6 +4,7 @@ $ErrorActionPreference = 'Stop'
 $root = (Resolve-Path (Join-Path $PSScriptRoot '..\..')).Path
 $skillsDir = Join-Path $root '.claude\skills'
 if (-not (Test-Path $Zip)) { Write-Host "[LOI] Khong thay file: $Zip"; exit 1 }
+if ((Split-Path $Zip -Leaf) -match 'gemini') { Write-Host '[LOI] Day la ban skill cho Gemini. Trong VS Code hay dung file 1c-dev-mentor-student-claude-gpt.zip'; exit 1 }
 
 $tmp = Join-Path ([System.IO.Path]::GetTempPath()) ("skill-" + [guid]::NewGuid())
 Expand-Archive -Path $Zip -DestinationPath $tmp -Force
