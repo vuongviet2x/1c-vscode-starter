@@ -12,11 +12,11 @@ SKILL_MD="$(find "$TMP" -name SKILL.md -not -path '*/__MACOSX/*' | head -n 1)"
 [ -n "$SKILL_MD" ] || { echo "[LỖI] File ZIP không chứa SKILL.md."; rm -rf "$TMP"; exit 1; }
 NAME="$(sed -n 's/^name:[[:space:]]*"\{0,1\}\([^"]*\)"\{0,1\}[[:space:]]*$/\1/p' "$SKILL_MD" | head -n 1)"
 [ -n "$NAME" ] || NAME="$(basename "$(dirname "$SKILL_MD")")"
+for SD in "$ROOT/.claude/skills" "$ROOT/.agents/skills"; do   # Claude Code + Antigravity/Gemini
+  mkdir -p "$SD"; rm -rf "$SD/$NAME"; cp -R "$(dirname "$SKILL_MD")" "$SD/$NAME"
+done
 DEST="$ROOT/.claude/skills/$NAME"
-mkdir -p "$ROOT/.claude/skills"
-rm -rf "$DEST"
-cp -R "$(dirname "$SKILL_MD")" "$DEST"
 rm -rf "$TMP"
 VER="$(grep -o 'Phiên bản [0-9.]*[-a-z]*' "$DEST/SKILL.md" | head -n 1)"
-echo "[OK] Đã cài skill '$NAME' ($VER) vào .claude/skills/$NAME"
-echo "     Mở lại panel Claude Code (hoặc gõ /reload-skills) để skill có hiệu lực."
+echo "[OK] Đã cài skill '$NAME' ($VER) vào .claude/skills/$NAME và .agents/skills/$NAME"
+echo "     Claude Code: mở lại panel (hoặc gõ /reload-skills). Antigravity: mở lại cửa sổ agent."

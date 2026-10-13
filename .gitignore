@@ -21,6 +21,7 @@ logs/*
 # Skill mentor: nhận từ giảng viên, không đưa lên Git
 .claude/skills/*
 !.claude/skills/README.md
+.agents/skills/
 .claude/settings.local.json
 
 # Rác hệ điều hành / editor

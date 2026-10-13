@@ -53,6 +53,7 @@ Chạy bằng **Terminal → Run Task…** (chọn mục bắt đầu bằng `1C
 - [03 — Gỡ lỗi cùng Claude](docs/03-go-loi-cung-claude.md)
 - [04 — Debug nâng cao bằng breakpoint trong VS Code](docs/04-debug-nang-cao.md)
 - [05 — Xử lý sự cố](docs/05-xu-ly-su-co.md)
+- [07 — Dùng Google Antigravity thay cho VS Code](docs/07-antigravity.md) — agent Gemini/Claude có sẵn, skill trong `.agents/skills`
 - [06 — Làm việc nhóm qua Git](docs/06-lam-viec-nhom.md) — chung phiên bản platform, chia việc, xử lý xung đột
 
 ## Cấu trúc thư mục
@@ -60,6 +61,7 @@ Chạy bằng **Terminal → Run Task…** (chọn mục bắt đầu bằng `1C
 ```
 .
 ├── CLAUDE.md                  # Hướng dẫn cho Claude khi làm việc trong dự án này
+├── AGENTS.md                  # Cùng nội dung, cho Antigravity / Gemini và các agent khác
 ├── .claude/
 │   ├── settings.json          # Quyền của Claude: được tự chạy check/dump, phải hỏi trước khi apply
 │   └── skills/                # Skill 1c-dev-mentor-student (cài từ ZIP, không lên Git)

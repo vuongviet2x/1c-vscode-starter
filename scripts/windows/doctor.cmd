@@ -21,7 +21,10 @@ if not exist "%SRC%\Configuration.xml" echo [THIEU] src\cf trong - chay dump.cmd
 :tools
 set "SK="
 for /d %%D in ("%ROOT%\.claude\skills\*") do if exist "%%D\SKILL.md" set "SK=%%~nxD"
-if defined SK echo [OK]   Skill da cai: %SK%
+if defined SK echo [OK]   Skill da cai: %SK%  (Claude Code)
+set "SKA="
+for /d %%D in ("%ROOT%\.agents\skills\*") do if exist "%%D\SKILL.md" set "SKA=%%~nxD"
+if defined SKA echo [OK]   Skill da cai: %SKA%  (Antigravity / Gemini)
 if not defined SK echo [THIEU] Chua cai skill - chay install-skill.cmd ^<file 1c-dev-mentor-student-claude-gpt.zip^>
 where git >nul 2>&1 && (echo [OK]   Git) || (echo [THIEU] Git - cai tu https://git-scm.com/downloads/win)
 where code >nul 2>&1 && (echo [OK]   VS Code) || (echo [CANH BAO] Khong thay lenh 'code' trong PATH)

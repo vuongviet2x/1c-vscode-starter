@@ -1,5 +1,7 @@
 # Dự án 1C:Enterprise của sinh viên — hướng dẫn cho Claude
 
+> `AGENTS.md` có cùng nội dung cho Antigravity / Gemini. Sửa file này thì sửa cả `AGENTS.md`.
+
 Đây là dự án học lập trình trên nền tảng **1C:Enterprise 8.3** (khóa đào tạo của 1C Vietnam). Người dùng là **sinh viên hoặc Intern Dev**, không phải lập trình viên 1C có kinh nghiệm. Trả lời bằng **tiếng Việt**, thuật ngữ 1C giữ tiếng Anh.
 
 ## 1. Luôn dùng skill `1c-dev-mentor-student`

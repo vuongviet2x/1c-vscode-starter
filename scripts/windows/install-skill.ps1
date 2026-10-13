@@ -1,4 +1,5 @@
-# Cai skill tu file ZIP vao <du-an>\.claude\skills\<ten-skill>\
+# Cai skill tu file ZIP vao <du-an>\.claude\skills\<ten-skill>\ (Claude Code)
+# va <du-an>\.agents\skills\<ten-skill>\ (Antigravity, Gemini)
 param([Parameter(Mandatory = $true)][string]$Zip)
 $ErrorActionPreference = 'Stop'
 $root = (Resolve-Path (Join-Path $PSScriptRoot '..\..')).Path
@@ -14,12 +15,14 @@ if (-not $skillMd) { Write-Host '[LOI] File ZIP khong chua SKILL.md.'; exit 1 }
 $src = $skillMd.Directory.FullName
 $name = (Select-String -Encoding UTF8 -Path $skillMd.FullName -Pattern '^name:\s*"?([^"]+)"?\s*$' | Select-Object -First 1).Matches.Groups[1].Value
 if (-not $name) { $name = $skillMd.Directory.Name }
-$dest = Join-Path $skillsDir $name
-if (Test-Path $dest) { Remove-Item $dest -Recurse -Force }
-New-Item -ItemType Directory -Path $skillsDir -Force | Out-Null
-Copy-Item $src $dest -Recurse
+foreach ($sd in @($skillsDir, (Join-Path $root '.agents\skills'))) {
+  $dest = Join-Path $sd $name
+  if (Test-Path $dest) { Remove-Item $dest -Recurse -Force }
+  New-Item -ItemType Directory -Path $sd -Force | Out-Null
+  Copy-Item $src $dest -Recurse
+}
 Remove-Item $tmp -Recurse -Force
 
 $ver = (Select-String -Encoding UTF8 -Path (Join-Path $dest 'SKILL.md') -Pattern 'Phi.n b.n ([0-9.]+[-a-z]*)' | Select-Object -First 1).Matches.Groups[1].Value
-Write-Host "[OK] Da cai skill '$name' $ver vao .claude\skills\$name"
-Write-Host '     Mo lai panel Claude Code (hoac go /reload-skills) de skill co hieu luc.'
+Write-Host "[OK] Da cai skill '$name' $ver vao .claude\skills\$name va .agents\skills\$name"
+Write-Host '     Claude Code: mo lai panel (hoac go /reload-skills). Antigravity: mo lai cua so agent.'

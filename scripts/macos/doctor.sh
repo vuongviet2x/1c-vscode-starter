@@ -16,7 +16,9 @@ if load_env; then
   [ -f "$SRC/Configuration.xml" ] && echo "[OK]   Mã nguồn: src/cf" || echo "[THIẾU] src/cf trống — chạy dump.sh"
 fi
 SK="$(ls -d "$ROOT"/.claude/skills/*/ 2>/dev/null | while read -r d; do [ -f "$d/SKILL.md" ] && basename "$d"; done | head -n 1)"
-[ -n "$SK" ] && echo "[OK]   Skill đã cài: $SK" || echo "[THIẾU] Chưa cài skill — chạy install-skill.sh <file 1c-dev-mentor-student-claude-gpt.zip>"
+[ -n "$SK" ] && echo "[OK]   Skill đã cài: $SK  (Claude Code)" || echo "[THIẾU] Chưa cài skill — chạy install-skill.sh <file 1c-dev-mentor-student-claude-gpt.zip>"
+SKA="$(ls -d "$ROOT"/.agents/skills/*/ 2>/dev/null | while read -r d; do [ -f "$d/SKILL.md" ] && basename "$d"; done | head -n 1)"
+[ -n "$SKA" ] && echo "[OK]   Skill đã cài: $SKA  (Antigravity / Gemini)"
 command -v git >/dev/null && echo "[OK]   Git" || echo "[THIẾU] Git — chạy: xcode-select --install"
 command -v code >/dev/null && echo "[OK]   VS Code (lệnh code)" || echo "[CẢNH BÁO] Không thấy lệnh 'code' — trong VS Code: Cmd+Shift+P → Shell Command: Install 'code' command in PATH"
 command -v claude >/dev/null && echo "[OK]   Claude Code CLI" || echo "[TÙY CHỌN] Chưa có Claude Code CLI — extension VS Code vẫn dùng được"
