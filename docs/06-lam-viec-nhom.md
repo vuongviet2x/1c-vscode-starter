@@ -10,15 +10,16 @@ Không chia sẻ thư mục `ib` qua Drive hay USB: infobase dạng file không 
 
 ## 1. Phiên bản platform của nhóm
 
-Định dạng file mà `dump` xuất ra phụ thuộc phiên bản platform. Một bản platform **cũ hơn** có thể không nạp được file do bản **mới hơn** xuất ra. Vì vậy:
+Mỗi người dùng bản platform nào cũng được, nhưng **trong một nhóm phải cùng dòng phiên bản**. Định dạng file mà `dump` xuất ra phụ thuộc phiên bản: bản **cũ hơn** có thể không nạp được file do bản **mới hơn** xuất ra.
 
-- Cả nhóm dùng cùng **8.3.25.x**. Số cuối (`1445`, `1560`…) khác nhau không sao.
-- Phiên bản chung ghi trong file **`.1c-platform`** ở thư mục gốc (mặc định `8.3.25`). File này lên Git, nên cả nhóm cùng đọc một giá trị.
-- Mỗi lệnh đều so platform trên máy bạn với file này. Khác bản thì in **cảnh báo**; riêng `dump` sẽ **dừng**, vì dump bằng bản khác có thể làm cả nhóm không nạp được.
-- Máy có nhiều bản platform: chọn bản 8.3.25 trong `1c.env` (`V8_VERSION` hoặc `V8_PATH`).
-- Nhóm muốn chuyển cả sang bản khác: một người sửa `.1c-platform`, commit, push. Mọi người cài bản đó rồi `git pull`.
+- "Cùng dòng" = trùng ba số đầu, ví dụ cùng `8.3.27`. Số cuối (`8.3.27.1200`, `8.3.27.1508`…) khác nhau không sao.
+- Nhóm lộ trình **1C:Jet** dùng `8.3.25`. Nhóm khác tự chọn, thường là bản cả nhóm đều cài được.
+- **Không cần cấu hình tay:** lần `dump` đầu tiên của repo nhóm tự ghi dòng phiên bản đang dùng vào file **`.1c-platform`** (ví dụ `8.3.27`). Trưởng nhóm commit file này; từ đó mọi người cùng đọc một giá trị.
+- Mỗi lệnh đều so platform trên máy bạn với file này. Khác dòng thì in **cảnh báo**; riêng `dump` sẽ **dừng**, vì dump bằng bản khác có thể làm cả nhóm không nạp được.
+- Máy có nhiều bản: đặt `V8_VERSION=<dòng của nhóm>` trong `1c.env` (ví dụ `V8_VERSION=8.3.27`), script tự chọn bản mới nhất trong dòng đó.
+- Nhóm muốn đổi sang dòng khác: một người sửa `.1c-platform`, commit, push. Mọi người cài bản đó rồi `git pull`.
 
-Chạy `doctor` để xem: dòng `Platform: 8.3.25.1560` và `Dung phien ban chung cua nhom: 8.3.25.x`.
+Chạy `doctor` để xem: dòng `Platform: 8.3.27.1200` và `Dung phien ban chung cua nhom: 8.3.27.x`.
 
 ## 2. Thiết lập lần đầu
 

@@ -4,12 +4,19 @@ Làm lần lượt từ trên xuống. Mỗi bước có cách kiểm tra; bư�
 
 Thời gian: khoảng 45–60 phút cho lần đầu.
 
-## Bước 1. Platform 1C:Enterprise 8.3.25.1445
+## Bước 1. Platform 1C:Enterprise
 
-Bộ cài lấy từ thư mục Drive giảng viên cung cấp. Khóa học dùng bản **8.3.25.1445** vì cấu hình Jet của khóa chạy trên bản này.
+Bản platform nào cũng dùng được: script tự tìm bản mới nhất đã cài trên máy.
 
-- **Windows:** chạy bộ cài, chọn ít nhất *1C:Enterprise* và *1C:Enterprise — thin client*. Mặc định cài vào `C:\Program Files\1cv8\8.3.25.1445\`.
-- **macOS:** mở file `.dmg`, chạy bộ cài. Mặc định cài vào `/Applications/1cv8.localized/8.3.25.1445/`. Nếu máy không cài được bản 8.3.25.1445, cài bản gần nhất và **báo giảng viên bản bạn đã cài**.
+| Bạn học | Cài bản |
+|---|---|
+| Lộ trình **1C:Jet** (bài tập lớn trên Jet) | **8.3.25** (khóa dùng 8.3.25.1445; bản 8.3.25.x khác cũng được), vì cấu hình Jet của khóa chạy trên bản này |
+| Lớp MIS, Intern Dev, đối tác, tự học | Bản bạn đang có hoặc bản giảng viên/khóa học yêu cầu |
+
+- **Windows:** chạy bộ cài, chọn ít nhất *1C:Enterprise* và *1C:Enterprise — thin client*. Mặc định cài vào `C:\Program Files\1cv8\<phiên-bản>\`.
+- **macOS:** mở file `.dmg`, chạy bộ cài. Mặc định cài vào `/Applications/1cv8.localized/<phiên-bản>/`.
+- Nhiều bản cài song song trên một máy được. Khi đó chọn bản muốn dùng bằng `V8_VERSION` trong `1c.env` (bước 5).
+- Làm nhóm: cả nhóm dùng **cùng dòng phiên bản** (ví dụ cùng 8.3.27.x) — xem `docs/06-lam-viec-nhom.md`.
 
 **Kiểm tra:** mở được cửa sổ launcher của 1C (danh sách infobase).
 
@@ -59,7 +66,7 @@ Mở Terminal trong VS Code: *Terminal → New Terminal* (`` Ctrl+` ``). Termina
 Lần đầu, doctor tự tạo file `1c.env`. Mở file này và kiểm tra:
 
 ```
-V8_VERSION=8.3.25.1445
+V8_VERSION=
 V8_PATH=
 IB_PATH=ib
 IB_USER=
@@ -67,7 +74,7 @@ IB_PWD=
 UI_LANG=en
 ```
 
-- `V8_VERSION`: đúng bản bạn đã cài. Nếu doctor vẫn báo không tìm thấy platform, điền đường dẫn đầy đủ của `1cv8.exe` (Windows) hoặc `1cv8` (macOS) vào `V8_PATH`.
+- `V8_VERSION`: **để trống** = tự dùng bản mới nhất trên máy. Lộ trình Jet: `V8_VERSION=8.3.25`. Muốn đúng một bản: ghi đủ, ví dụ `8.3.25.1445`. Doctor vẫn không tìm thấy platform → điền đường dẫn đầy đủ của `1cv8.exe` (Windows) / `1cv8` (macOS) vào `V8_PATH`; doctor in sẵn danh sách các bản tìm được.
 - `IB_USER`, `IB_PWD`: tài khoản đăng nhập infobase. File `.dt` của khóa có user thì điền vào; infobase trống thì để trống.
 - Mật khẩu chỉ nên dùng chữ và số (ký tự như `&`, `^`, `%` làm script Windows chạy sai).
 - `1c.env` **không** được đưa lên Git và Claude được cấu hình không đọc file này.

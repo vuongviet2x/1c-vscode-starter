@@ -27,37 +27,20 @@ if "%UI_LANG%"=="" set "UI_LANG=en"
 if "%IB_PATH%"=="" set "IB_PATH=ib"
 
 rem --- Tim 1cv8.exe (Designer) ---------------------------------------
-set "PF86=%ProgramFiles(x86)%"
+rem V8_PATH dien san -> dung luon. Khong thi tu tim ban MOI NHAT khop V8_VERSION
+rem (V8_VERSION trong = moi ban; 8.3.25 = moi ban 8.3.25.x; 8.3.25.1445 = dung ban do).
 if not "%V8_PATH%"=="" goto :check_v8
-if exist "%ProgramFiles%\1cv8\%V8_VERSION%\bin\1cv8.exe" set "V8_PATH=%ProgramFiles%\1cv8\%V8_VERSION%\bin\1cv8.exe"
-if not "%V8_PATH%"=="" goto :check_v8
-if exist "%PF86%\1cv8\%V8_VERSION%\bin\1cv8.exe" set "V8_PATH=%PF86%\1cv8\%V8_VERSION%\bin\1cv8.exe"
-if not "%V8_PATH%"=="" goto :check_v8
-rem Ban training (hoc tap) cua platform: thu muc 1cv8t, file 1cv8t.exe
-if exist "%ProgramFiles%\1cv8t\%V8_VERSION%\bin\1cv8t.exe" set "V8_PATH=%ProgramFiles%\1cv8t\%V8_VERSION%\bin\1cv8t.exe"
-if not "%V8_PATH%"=="" goto :check_v8
-if exist "%PF86%\1cv8t\%V8_VERSION%\bin\1cv8t.exe" set "V8_PATH=%PF86%\1cv8t\%V8_VERSION%\bin\1cv8t.exe"
+for /f "usebackq delims=" %%P in (`powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0find-platform.ps1" -Want "%V8_VERSION%"`) do set "V8_PATH=%%P"
 
 :check_v8
 if exist "%V8_PATH%" goto :v8_ok
-echo [LOI] Khong tim thay 1cv8.exe cua platform %V8_VERSION%.
+if "%V8_VERSION%"=="" echo [LOI] Khong tim thay platform 1C:Enterprise nao tren may.
+if not "%V8_VERSION%"=="" echo [LOI] Khong tim thay platform khop V8_VERSION=%V8_VERSION%.
 if not "%V8_PATH%"=="" echo       V8_PATH trong 1c.env tro toi file khong ton tai: %V8_PATH%
-echo       Cac ban platform tim thay trong Program Files:
-set "FOUND="
-for /d %%D in ("%ProgramFiles%\1cv8\8.*") do call :show_v8 "%%~fD"
-for /d %%D in ("%PF86%\1cv8\8.*") do call :show_v8 "%%~fD"
-for /d %%D in ("%ProgramFiles%\1cv8t\8.*") do call :show_v8 "%%~fD"
-for /d %%D in ("%PF86%\1cv8t\8.*") do call :show_v8 "%%~fD"
-if not defined FOUND echo         - khong co ban nao. Platform co the cai o noi khac: dien duong dan day du vao V8_PATH.
-echo       Sua V8_VERSION trong 1c.env cho dung mot ban o tren, hoac dien V8_PATH.
+echo       Cac ban platform tim thay:
+powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0find-platform.ps1" -List
+echo       Sua V8_VERSION trong 1c.env (de trong = tu chon ban moi nhat), hoac dien V8_PATH.
 exit /b 1
-
-:show_v8
-if exist "%~1\bin\1cv8.exe" echo         %~nx1   -^>  %~1\bin\1cv8.exe
-if exist "%~1\bin\1cv8.exe" set "FOUND=1"
-if exist "%~1\bin\1cv8t.exe" echo         %~nx1 (training)   -^>  %~1\bin\1cv8t.exe
-if exist "%~1\bin\1cv8t.exe" set "FOUND=1"
-exit /b 0
 
 :v8_ok
 for %%I in ("%V8_PATH%") do set "V8_BIN=%%~dpI"
@@ -74,7 +57,7 @@ if exist "%ROOT%\.1c-platform" set /p TEAM_V8=<"%ROOT%\.1c-platform"
 if "%TEAM_V8%"=="" goto :team_ok
 echo %V8_DETECTED%.| findstr /b /l /c:"%TEAM_V8%." >nul && goto :team_ok
 set "PLATFORM_MISMATCH=1"
-echo [CANH BAO] Platform cua ban la %V8_DETECTED%, nhom thong nhat dung %TEAM_V8%.x (file .1c-platform).
+echo [CANH BAO] Platform cua ban la %V8_DETECTED%, nhom dang dung %TEAM_V8%.x (file .1c-platform).
 echo            dump bang ban khac co the lam ca nhom khong nap duoc src\cf. Xem docs\06-lam-viec-nhom.md
 :team_ok
 

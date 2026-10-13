@@ -4,7 +4,7 @@ Mức này **không bắt buộc**. Làm khi bạn đã quen mức cơ bản (`d
 
 Công cụ dùng ở đây là extension cộng đồng **1C: Platform Tools** (`yellow-hammer.1c-platform-tools`). Nó nối VS Code với debug server HTTP của platform (`dbgs`, cổng mặc định 1550). Đây không phải công cụ chính thức của 1C; nếu gặp trục trặc, quay về debug trong Designer như ở [03](03-go-loi-cung-claude.md).
 
-> **Giảng viên:** hãy chạy thử toàn bộ trang này trên một máy Windows và một máy macOS với platform 8.3.25.1445 trước khi phát cho lớp.
+> **Giảng viên:** hãy chạy thử toàn bộ trang này trên một máy Windows và một máy macOS với bản platform lớp đang dùng trước khi phát cho lớp. Sửa `platformVersion` trong `launch.json` cho đúng bản đó.
 
 ## Cần cài thêm
 

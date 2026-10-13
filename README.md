@@ -18,7 +18,7 @@ Bộ khởi động cho sinh viên và Intern Dev học phát triển trên nề
 
 ## Bắt đầu nhanh
 
-1. Cài platform **8.3.25.1445**, Git, VS Code, tài khoản Claude — chi tiết: [docs/01-cai-dat.md](docs/01-cai-dat.md).
+1. Cài platform 1C:Enterprise 8.3 (**bản nào cũng được**; lộ trình 1C:Jet dùng **8.3.25**), Git, VS Code, tài khoản Claude — chi tiết: [docs/01-cai-dat.md](docs/01-cai-dat.md).
 2. Tải repo này về: `git clone <link-repo> my-1c-project` (hoặc *Code → Download ZIP*), mở thư mục bằng VS Code, đồng ý cài các extension được gợi ý.
 3. Mở Terminal trong VS Code (`` Ctrl+` ``) và chạy **doctor** để tạo `1c.env` và kiểm tra máy:
    - Windows: `scripts\windows\doctor.cmd`
@@ -66,7 +66,7 @@ Chạy bằng **Terminal → Run Task…** (chọn mục bắt đầu bằng `1C
 ├── .vscode/                   # Extension gợi ý, cài đặt, Tasks
 ├── .bsl-language-server.json  # Cấu hình kiểm tra code BSL
 ├── 1c.env.example             # Mẫu cấu hình -> sao chép thành 1c.env
-├── .1c-platform               # Phiên bản platform chung của nhóm (mặc định 8.3.25)
+├── .1c-platform               # Phiên bản platform chung của nhóm (tự tạo ở lần dump đầu tiên)
 ├── scripts/windows/  scripts/macos/
 ├── src/cf/                    # Cấu hình xuất ra file — phần bạn commit lên Git
 ├── dt/                        # Chỗ để file .dt (không lên Git)
